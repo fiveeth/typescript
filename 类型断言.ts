@@ -1,0 +1,35 @@
+// 定义一个函数，获取数字或者字符串的长度
+// 类型断言：可以手动指定一个类型, 其实就是先假定这个值是某个类型，方便调用这个类型的专属方法；并不是强制将类型转换成另一个类型
+// 方式一
+function getLength(x: string | number): number {
+    if ((x as string).length) {
+        return (x as string).length;
+    } else {
+        return x.toString().length;
+    }
+}
+
+// 方式二
+// function getLength(x:string | number):number {
+//     if((<string>x).length) {
+//         return (<string>x).length;
+//     } else {
+//         return x.toString().length;
+//     }
+// }
+console.log(getLength(2));
+
+// 将一个类型断言为any类型，因为any类型可以访问任何属性和方法，举个例子
+// myObj.a = 10; 报错
+let myObj = {};
+(myObj as any).a = 10;
+console.log((myObj as any).a);
+
+// 将any类型断言为具体类型
+function getSum(x: any, y: any): any {
+    return x + y;
+}
+let sum1 = getSum(1, 2) as number;
+let sum2 = getSum('1', '2') as string;
+console.log(sum1);
+console.log(sum2);
